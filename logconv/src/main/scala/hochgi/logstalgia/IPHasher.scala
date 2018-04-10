@@ -21,7 +21,7 @@ object IPHasher {
       val i1 = hash & 255
       hash >>= 8
       val i0 = hash & 255
-      s"$i0.$i1.$i2.$i3 (xxhashed)"
+      s"$i0.$i1.$i2.$i3 (hashed)"
     case somethingElse => somethingElse
   }
 }

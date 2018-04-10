@@ -22,7 +22,7 @@ object LogstaConvert extends CaseApp[Options] with LogLineParser {
           case Parsed.Failure(_, index, _) => println(s"failed at index: $index")
           case Parsed.Success((timestamp, foo, color, path, remote, status, rt, xForward), _) =>
             val success = if (status.toInt >= 500) "0" else "1"
-            val weight = rt * 100
+            val weight = rt * rt * 10
             val ip = {
               val realIP = if (xForward == "N/A") remote else xForward
               if(options.hashIp) IPHasher.hashIp(realIP, options.hashSeed)
