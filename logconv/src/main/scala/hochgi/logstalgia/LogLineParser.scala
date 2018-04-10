@@ -1,4 +1,4 @@
-package logstalgia
+package hochgi.logstalgia
 
 import java.time._
 import fastparse.all._

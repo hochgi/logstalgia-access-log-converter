@@ -1,9 +1,9 @@
-package logstalgia
+package hochgi.logstalgia
 
 import fastparse.all.Parsed
 import caseapp._
 
-case class Options(input: String, hashIp: Boolean = false)
+case class Options(input: String, hashIp: Boolean = false, hashSeed: Option[Int] = None)
 
 object LogstaConvert extends CaseApp[Options] with LogLineParser {
 
@@ -25,7 +25,7 @@ object LogstaConvert extends CaseApp[Options] with LogLineParser {
             val weight = rt * 100
             val ip = {
               val realIP = if (xForward == "N/A") remote else xForward
-              if(options.hashIp) IPHasher.hashIp(realIP)
+              if(options.hashIp) IPHasher.hashIp(realIP, options.hashSeed)
               else realIP
             }
             val p = path.replace('|', '｜')
